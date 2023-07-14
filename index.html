@@ -89,103 +89,35 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">INVE: Interactive Neural Video Editing</h1>
-          <!-- <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
-          </div> -->
 
-          <!-- <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
-          </div> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://gabriel-huang.github.io/">Jiahui Huang</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.ubc.ca/~lsigal/">Leonid Sigal</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.ubc.ca/~kmyi/">Kwang Moo Yi</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.oliverwang.info/">Oliver Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://joonyoung-cv.github.io/">Joon Young Lee</a><sup>1</sup>,
+            </span>
+          </div>
 
-          <!-- <div class="column has-text-centered">
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-            </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Adobe Research</span>
+            <span class="author-block"><sup>2</sup>The University of British Columbia</span>
+          </div>
 
-          </div> -->
+
+
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </div>
-  </div>
-</section> -->
 
 
 <!-- <section class="hero is-light is-small">
@@ -264,6 +196,15 @@
           <p>
             Compared to LNA, INVE reduces the learning and inferencing time by a factor of 5, and supports various video editing operations that LNA cannot. 
             We showcase the superiority of INVE over LNA in interactive video editing through a comprehensive quantitative and qualitative analysis, highlighting its numerous advantages and improved performance.
+          </p> 
+          <img src="./static/images/pipeline.png"/>
+          <p>
+            Forward mapping pipeline (solid lines): Each video pixel location is fed into two
+            mapping networks to predict (u, v) coordinates on each atlas. Then these coordinates are fed into the atlas network A to predict
+            the RGB color on that atlas. We use the opacity value α predicted by the alpha network Ma to compose the reconstructed color at
+            location (x, y, t). Our backward mapping pipeline (dotted lines) maps atlas coordinates to video coordinates, it takes an (u, v) coordinate,
+            as well as the target frame index t as input, and predicts the pixel location (x, y, t). With the forward and backward pipelines combined,
+            we can achieve long-range point tracking on videos
           </p> 
         </div>
       </div>
@@ -344,6 +285,9 @@
             <!-- Interpolating. -->
             <div class="content has-text-justified">
               <p>
+                Our layered editing pipeline supports multiple types of edits: 1) Sketch Edits, where users can sketch scribbles
+                using the brush tool; 2) Local Adjustments, users can apply local adjustments (brightness, saturation, hue) to a specific region in
+                the scene; 3) Texture Edits, users can import external graphics that tracks and deforms with the moving object.
                 We showcase some videos edited using our pipeline, our method can propagate various types of edits consistently to all frames in a video.
               </p>
             </div>
